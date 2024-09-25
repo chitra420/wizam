@@ -10,7 +10,6 @@ import { usePathname } from "next/navigation";
 import Header from "@/components/MainHeader";
 import Footer from "@/components/MainFooter";
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
-import dynamic from "next/dynamic";
 
 // Dynamically import components that use window/document
 
@@ -37,15 +36,16 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning={true} className="!scroll-smooth" lang="en">
       <head />
-      <body>
+      <body className="light">
         {loading ? (
           <PreLoader />
         ) : (
           <SessionProvider>
             <ThemeProvider
               attribute="class"
-              enableSystem={false}
-              defaultTheme="light"
+              enableSystem={false} // Disable system theme detection
+              forcedTheme="light" // Force light theme
+              defaultTheme="light" // Light theme as default
             >
               <ProgressBar
                 height="4px"
